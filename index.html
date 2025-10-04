@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Style Transfer</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e1e1e">
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Style Transfer</h1>
+            <p>Upload a photo and transform it into a different artistic style.</p>
+        </header>
+        <main>
+            <div class="controls">
+                <div class="button-group">
+                    <input type="file" id="image-upload" accept="image/*" aria-hidden="true">
+                    <label for="image-upload" id="upload-label" class="upload-btn" role="button" aria-controls="image-upload">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+                        <span>Upload Image</span>
+                    </label>
+                    <button id="camera-btn" class="upload-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><circle cx="12" cy="12" r="3.2"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+                        <span>Use Camera</span>
+                    </button>
+                </div>
+
+                <div class="preview-container">
+                    <img id="image-preview" src="" alt="Your uploaded image preview" class="hidden">
+                    <p id="preview-placeholder">Upload an image to start</p>
+                </div>
+
+                <div class="style-selector">
+                    <label for="style-select">Choose a style:</label>
+                    <select id="style-select">
+                        <option value="Pencil Sketch">Pencil Sketch</option>
+                        <option value="Watercolor Painting">Watercolor</option>
+                        <option value="Oil Painting">Oil Painting</option>
+                        <option value="Charcoal Drawing">Charcoal Drawing</option>
+                        <option value="Anime / Manga">Anime / Manga</option>
+                        <option value="Pop Art">Pop Art</option>
+                        <option value="Steampunk">Steampunk</option>
+                        <option value="Cubism">Cubism</option>
+                        <option value="Impressionism">Impressionism</option>
+                        <option value="Surrealism">Surrealism</option>
+                        <option value="Art Nouveau">Art Nouveau</option>
+                        <option value="Gothic">Gothic</option>
+                    </select>
+                </div>
+                
+                <button id="generate-btn" disabled>Apply Style</button>
+            </div>
+            <div class="output">
+                <div id="output-container">
+                    <div id="loader" class="hidden"></div>
+                    <img id="generated-image" src="" alt="Stylized image" class="hidden">
+                    <p id="output-placeholder" aria-live="polite">Your stylized image will appear here.</p>
+                </div>
+                <button id="download-btn" class="hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    <span>Download Image</span>
+                </button>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="index.js"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

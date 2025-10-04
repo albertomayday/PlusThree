@@ -1,0 +1,259 @@
+:root {
+  --primary-bg: #1e1e1e;
+  --secondary-bg: #2d2d2d;
+  --text-color: #e0e0e0;
+  --accent-color: #4a90e2;
+  --accent-hover-color: #5aa1f2;
+  --border-color: #444;
+  --error-color: #e57373;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0;
+  padding: 1rem;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: white;
+}
+
+header p {
+    margin-top: 0.5rem;
+    color: #a0a0a0;
+}
+
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+.controls {
+  background-color: var(--secondary-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.upload-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+    text-align: center;
+    font-weight: bold;
+    border: none; /* Ensure buttons and labels look consistent */
+    font-size: 1rem; /* Consistent font size */
+}
+
+.upload-btn:hover:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--accent-hover-color);
+}
+
+.upload-btn:disabled, .upload-btn[aria-disabled="true"] {
+    background-color: #555;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.upload-btn[aria-disabled="true"] {
+    pointer-events: none;
+}
+
+
+.upload-btn svg {
+    fill: white;
+}
+
+#image-upload {
+    display: none;
+}
+
+.preview-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--primary-bg);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 2px dashed var(--border-color);
+    position: relative;
+}
+
+#image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#preview-placeholder {
+    color: #888;
+    text-align: center;
+    position: absolute;
+}
+
+.style-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+#style-select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+#generate-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+#generate-btn:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+#generate-btn:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.output {
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+#output-container {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-bg);
+    border-radius: 5px;
+}
+
+#generated-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+#output-placeholder {
+    color: #888;
+    text-align: center;
+    position: absolute;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid var(--accent-color);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+}
+
+#download-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+#download-btn:hover {
+    background-color: var(--accent-hover-color);
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+    .output {
+        min-height: 300px;
+    }
+}
