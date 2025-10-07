@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Photomaton</string>
+    <string name="image_preview">Image Preview</string>
+    <string name="select_image">Select Image</string>
+    <string name="refine_style">Refine Style</string>
+    <string name="download">Download</string>
+    <string name="style_prompt">Select a style</string>
+
+    <string-array name="style_array">
+        <item>Pop Art</item>
+        <item>Sketch</item>
+        <item>Van Gogh</item>
+        <item>Cyberpunk</item>
+        <item>Steampunk</item>
+        <item>Watercolor</item>
+    </string-array>
+</resources>
