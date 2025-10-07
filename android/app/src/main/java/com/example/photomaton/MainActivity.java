@@ -46,7 +46,7 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String BACKEND_URL = "http://10.0.2.2:8080/stylize"; // URL for Android Emulator to connect to localhost
+    private static final String BACKEND_URL = "https://photo-inky-kappa.vercel.app/stylize";
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
     private ImageView imageView;
