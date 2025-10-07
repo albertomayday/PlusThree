@@ -8,10 +8,10 @@ import google.generativeai as genai
 
 # --- Configuración ---
 # Crea la aplicación Flask
+# Vercel buscará esta variable `app` para ejecutar el servidor.
 app = Flask(__name__)
 
 # Configura el cliente de Gemini usando una variable de entorno para la seguridad.
-# Antes de ejecutar, asegúrate de hacer: export GEMINI_API_KEY="TU_CLAVE_SECRETA"
 try:
     genai.configure(api_key=os.environ["GEMINI_API_KEY"])
     model = genai.GenerativeModel('gemini-1.5-flash')
@@ -36,7 +36,13 @@ def image_to_base64(image: Image, format="JPEG"):
     return base64.b64encode(buffered.getvalue()).decode('utf-8')
 
 
-# --- Endpoint de la API ---
+# --- Endpoints de la API ---
+
+@app.route('/', methods=['GET'])
+def index():
+    """Endpoint de bienvenida para confirmar que el servidor está funcionando."""
+    return jsonify({"message": "Welcome to the Photomaton API! The server is running."})
+
 @app.route('/stylize', methods=['POST'])
 def stylize():
     """Endpoint que recibe una imagen y un estilo, y devuelve la imagen estilizada."""
@@ -60,13 +66,10 @@ def stylize():
         print("Llamada a Gemini completada.")
 
         # 4. Procesa la respuesta de Gemini
-        # Asumiendo que la imagen es la primera parte de la respuesta.
-        # Puede necesitar ajustes si el modelo devuelve texto también.
         if response.parts:
             result_image_data = response.parts[0].data
             result_image = Image.open(io.BytesIO(result_image_data))
         else:
-            # Si no hay 'parts', puede que la respuesta sea texto (un error o rechazo de seguridad)
             return jsonify({"error": f"La API no devolvió una imagen. Respuesta: {response.text}"}), 500
         
         # 5. Envía la imagen estilizada de vuelta a la app Android
@@ -81,8 +84,6 @@ def stylize():
         return jsonify({"error": f"Error interno del servidor: {e}"}), 500
 
 
-# --- Ejecución del Servidor ---
+# --- Ejecución Local (esto no se usa en Vercel) ---
 if __name__ == '__main__':
-    # Escucha en todas las interfaces de red (0.0.0.0) en el puerto 8080
-    # para que el emulador pueda conectarse.
     app.run(host='0.0.0.0', port=8080, debug=True)
